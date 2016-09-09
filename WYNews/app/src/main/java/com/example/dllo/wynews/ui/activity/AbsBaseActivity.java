@@ -52,6 +52,6 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-//        overridePendingTransition();
+        overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
     }
 }

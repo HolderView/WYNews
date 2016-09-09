@@ -1,15 +1,14 @@
-package com.example.dllo.wynews.ui.activity;
+package com.example.dllo.wynews.ui.fragment;
 
 import com.example.dllo.wynews.R;
 
 /**
  * Created by dllo on 16/9/9.
- * 欢迎页Activity
  */
-public class WelcomeActivity extends AbsBaseActivity{
+public class LiveFragment extends AbsBaseFragment {
     @Override
     protected int setLayout() {
-        return R.layout.activity_welcome;
+        return R.layout.fragment_live;
     }
 
     @Override
@@ -18,7 +17,7 @@ public class WelcomeActivity extends AbsBaseActivity{
     }
 
     @Override
-    protected void initData() {
+    protected void initDatas() {
 
     }
 }
