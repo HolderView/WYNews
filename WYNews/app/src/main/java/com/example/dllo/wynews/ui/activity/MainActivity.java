@@ -2,19 +2,12 @@ package com.example.dllo.wynews.ui.activity;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.FrameLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.ui.fragment.LiveFragment;
 import com.example.dllo.wynews.ui.fragment.MeFragment;
-import com.example.dllo.wynews.ui.fragment.NewsFragment;
+import com.example.dllo.wynews.ui.fragment.news.NewsFragment;
 import com.example.dllo.wynews.ui.fragment.TopicFragment;
 
 /**

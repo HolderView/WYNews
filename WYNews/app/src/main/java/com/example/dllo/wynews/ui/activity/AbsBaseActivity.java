@@ -41,12 +41,14 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
 
     protected void goTo(Context from, Class<? extends AbsBaseActivity> to) {
         startActivity(new Intent(from, to));
+        overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
     }
 
     protected void goTo(Context from, Class<? extends AbsBaseActivity> to, Bundle bundle) {
         Intent intent = new Intent(from, to);
         intent.putExtras(bundle);
         startActivity(intent);
+        overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
     }
 
     @Override

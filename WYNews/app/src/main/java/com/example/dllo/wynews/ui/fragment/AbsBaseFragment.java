@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.ui.activity.AbsBaseActivity;
 import com.example.dllo.wynews.ui.app.MyApp;
 
@@ -27,16 +28,19 @@ public abstract class AbsBaseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context= context;
+        this.context = context;
     }
+
     protected abstract int setLayout();
+
     protected abstract void initViews();
+
     protected abstract void initDatas();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(setLayout(),container,false);
+        return inflater.inflate(setLayout(), container, false);
     }
 
     @Override
@@ -50,17 +54,35 @@ public abstract class AbsBaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initDatas();
     }
-    protected <T extends View> T byView(int resId){
+
+    protected <T extends View> T byView(int resId) {
         return (T) getView().findViewById(resId);
     }
-    protected void goTo(Class<? extends AbsBaseFragment> to){
-        context.startActivity(new Intent(context,to));
+
+    protected void goTo(Class<? extends AbsBaseFragment> to) {
+        context.startActivity(new Intent(context, to));
+        getActivity().overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
     }
-    protected void goTo(Class<? extends AbsBaseFragment> to,Bundle bundle){
-        Intent intent=new Intent(context,to);
+
+    protected void goTo(Class<? extends AbsBaseFragment> to, Bundle bundle) {
+        Intent intent = new Intent(context, to);
         intent.putExtras(bundle);
         context.startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
     }
+
+    protected void goToActivity(Class<? extends AbsBaseActivity> to) {
+        context.startActivity(new Intent(context, to));
+        getActivity().overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
+    }
+
+    protected void goToActivity(Class<? extends AbsBaseActivity> to, Bundle bundle) {
+        Intent intent = new Intent(context, to);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.activity_anim_in,R.anim.activity_anim_out);
+    }
+    
 
 
 }

@@ -15,24 +15,32 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/tv_me_title_set"
+            <RelativeLayout
+                android:id="@+id/rl_me_setting"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="设置"
-                android:textColor="#ffffff" />
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@id/tv_me_title_set"
-                android:src="@mipmap/a9e" />
+                <TextView
+                    android:id="@+id/tv_me_title_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="设置"
+                    android:textColor="#ffffff" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/tv_me_title_set"
+                    android:src="@mipmap/a9e" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"

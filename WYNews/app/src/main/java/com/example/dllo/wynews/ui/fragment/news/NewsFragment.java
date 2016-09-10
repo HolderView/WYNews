@@ -1,4 +1,4 @@
-package com.example.dllo.wynews.ui.fragment;
+package com.example.dllo.wynews.ui.fragment.news;
 
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
