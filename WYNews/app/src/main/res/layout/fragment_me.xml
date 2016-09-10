@@ -48,6 +48,7 @@
             android:padding="10dp">
 
             <Button
+                android:id="@+id/btn_me_login"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
@@ -198,6 +199,11 @@
             android:text="阅读"
             android:textColor="#868686" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#f5f5f5" />
+
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -207,6 +213,11 @@
             android:gravity="center"
             android:text="收藏"
             android:textColor="#868686" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#f5f5f5" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -218,12 +229,17 @@
             android:text="跟帖"
             android:textColor="#868686" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#f5f5f5" />
+
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@android:color/transparent"
-            android:drawableTop="@mipmap/a8m"
+            android:drawableTop="@mipmap/a8s"
             android:gravity="center"
             android:text="金币"
             android:textColor="#868686" />
@@ -232,7 +248,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
