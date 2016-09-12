@@ -7,14 +7,14 @@ import android.content.Context;
  * Created by dllo on 16/9/9.
  */
 public class MyApp extends Application {
-    private Context context;
+    private static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
         context=getApplicationContext();
     }
 
-    public Context getContext() {
+    public static Context getContext() {
         return context;
     }
 }

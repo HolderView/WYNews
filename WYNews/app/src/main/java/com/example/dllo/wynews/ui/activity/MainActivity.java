@@ -5,10 +5,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
 import com.example.dllo.wynews.R;
-import com.example.dllo.wynews.ui.fragment.LiveFragment;
+import com.example.dllo.wynews.ui.fragment.live.LiveFragment;
 import com.example.dllo.wynews.ui.fragment.MeFragment;
 import com.example.dllo.wynews.ui.fragment.news.NewsFragment;
-import com.example.dllo.wynews.ui.fragment.TopicFragment;
+import com.example.dllo.wynews.ui.fragment.topic.TopicFragment;
 
 /**
  * 首页Activity
