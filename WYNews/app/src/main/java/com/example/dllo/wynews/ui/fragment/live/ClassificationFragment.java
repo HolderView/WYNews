@@ -1,17 +1,31 @@
 package com.example.dllo.wynews.ui.fragment.live;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.dllo.wynews.R;
+import com.example.dllo.wynews.model.bean.ClassificationBean;
+import com.example.dllo.wynews.model.net.UrlValues;
+import com.example.dllo.wynews.model.net.VolleyInstance;
+import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.ui.adapter.classification.ClassificationListViewAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
+import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +43,7 @@ public class ClassificationFragment extends AbsBaseFragment {
     private RadioGroup rg_1, rg_2, rg_3;
     private RadioButton rb_top100, rb_dazhibo, rb_zaixianchang, rb_xingzaixian, rb_zonghengtan,
             rb_zixun, rb_yule, rb_bendi, rb_tiyu, rb_shishang, rb_qiche, rb_keji, rb_caijing, rb_shenghuo;
+    private List<ClassificationBean.LiveReviewBean> liveDatas;
 
 
     @Override
@@ -48,9 +63,8 @@ public class ClassificationFragment extends AbsBaseFragment {
         for (int i = 0; i < 20; i++) {
             datas.add("第" + i + "行");
         }
-        adapter = new ClassificationListViewAdapter(datas, context);
-
-
+        liveDatas = new ArrayList<>();
+        adapter = new ClassificationListViewAdapter(context);
         View view = LayoutInflater.from(context).inflate(R.layout.item_classification_head_view, null);
         rg_1 = (RadioGroup) view.findViewById(R.id.rg_classification_title_first);
         rg_2 = (RadioGroup) view.findViewById(R.id.rg_classification_title_second);
@@ -105,6 +119,7 @@ public class ClassificationFragment extends AbsBaseFragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.rb_classification_top100:
+
                     break;
                 case R.id.rb_classification_dazhibo:
                     break;
@@ -131,6 +146,23 @@ public class ClassificationFragment extends AbsBaseFragment {
                 case R.id.rb_classification_caijing:
                     break;
                 case R.id.rb_classification_shenghuo:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_SHENGHUO + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Log.d("xxxxxxx", result);
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+
+
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
             }
             if (btnId.equals("1") || btnId.equals("2") || btnId.equals("3") || btnId.equals("4") || btnId.equals("5")) {

@@ -3,9 +3,12 @@ package com.example.dllo.wynews.model.net;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dllo.wynews.ui.app.MyApp;
+
+import org.json.JSONObject;
 
 /**
  * Created by dllo on 16/9/12.
@@ -49,10 +52,22 @@ public class VolleyInstance {
         });
         requestQueue.add(stringRequest);
     }
-    //JsonObject请求的方法
-//    public void startJsonObjRequest(String url,final VolleyResult result){
-//
-//    }
+    //JsonObj请求的方法
+    public void startJsonObjRequest(String url,final VolleyResult volleyResult){
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                    volleyResult.success(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                    volleyResult.failure();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
 
 
 }
