@@ -6,14 +6,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.model.bean.ClassificationBean;
 import com.example.dllo.wynews.model.net.UrlValues;
@@ -22,10 +14,6 @@ import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.ui.adapter.classification.ClassificationListViewAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +88,21 @@ public class ClassificationFragment extends AbsBaseFragment {
         rg_1.check(R.id.rb_classification_top100);
         listView.addHeaderView(view);
         listView.setAdapter(adapter);
+        //刚进入直播分类时自动获取Top100
+        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+            @Override
+            public void success(String result) {
+                Gson gson = new Gson();
+                ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                adapter.setDatas(liveDatas);
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
 
     }
 
@@ -119,31 +122,215 @@ public class ClassificationFragment extends AbsBaseFragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.rb_classification_top100:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
 
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_dazhibo:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_DAZHIBO + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_zaixianchang:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_ZAIXIANCHANG + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
+
                     break;
                 case R.id.rb_classification_xingzaixian:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_zonghengtan:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_ZONGHENGTAN + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
+
                     break;
                 case R.id.rb_classification_zixun:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_ZIXUN + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
+
                     break;
                 case R.id.rb_classification_yule:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_YULE + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_bendi:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_BENDI + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_tiyu:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TIYU + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_shishang:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_SHISHANG + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_qiche:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_QICHE + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_keji:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_KEJI + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_caijing:
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_CAIJING + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        @Override
+                        public void success(String result) {
+                            Gson gson = new Gson();
+                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                        }
+
+                        @Override
+                        public void failure() {
+
+                        }
+                    });
                     break;
                 case R.id.rb_classification_shenghuo:
                     VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_SHENGHUO + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
@@ -154,8 +341,6 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
-
-
                         }
 
                         @Override
