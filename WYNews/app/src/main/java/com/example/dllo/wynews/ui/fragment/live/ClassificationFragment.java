@@ -3,14 +3,20 @@ package com.example.dllo.wynews.ui.fragment.live;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.model.bean.ClassificationBean;
 import com.example.dllo.wynews.model.net.UrlValues;
 import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
+import com.example.dllo.wynews.model.refresh.OnRefreshListener;
+import com.example.dllo.wynews.model.refresh.RefreshListView;
+import com.example.dllo.wynews.tools.ScreenSizeUtil;
 import com.example.dllo.wynews.ui.adapter.classification.ClassificationListViewAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
@@ -25,13 +31,15 @@ import java.util.List;
  */
 public class ClassificationFragment extends AbsBaseFragment {
     //    private String strBtnSelected="1";
-    private ListView listView;
+    private RefreshListView refreshListView;
     private ClassificationListViewAdapter adapter;
     private List<String> datas;
     private RadioGroup rg_1, rg_2, rg_3;
     private RadioButton rb_top100, rb_dazhibo, rb_zaixianchang, rb_xingzaixian, rb_zonghengtan,
             rb_zixun, rb_yule, rb_bendi, rb_tiyu, rb_shishang, rb_qiche, rb_keji, rb_caijing, rb_shenghuo;
     private List<ClassificationBean.LiveReviewBean> liveDatas;
+    private List<ClassificationBean.LiveReviewBean> otherDatas;
+    private int nextPage=2;
 
 
     @Override
@@ -41,7 +49,7 @@ public class ClassificationFragment extends AbsBaseFragment {
 
     @Override
     protected void initViews() {
-        listView = byView(R.id.lv_classification);
+        refreshListView = byView(R.id.lv_classification);
 
     }
 
@@ -86,16 +94,67 @@ public class ClassificationFragment extends AbsBaseFragment {
         rb_caijing.setOnClickListener(new BtnSelected("13"));
         rb_shenghuo.setOnClickListener(new BtnSelected("14"));
         rg_1.check(R.id.rb_classification_top100);
-        listView.addHeaderView(view);
-        listView.setAdapter(adapter);
+        refreshListView.addHeaderView(view);
+        refreshListView.setAdapter(adapter);
+        adapter.setDatas(liveDatas);
         //刚进入直播分类时自动获取Top100
         VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
             @Override
             public void success(String result) {
                 Gson gson = new Gson();
-                ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
-                List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                final ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                liveDatas = classBean.getLive_review();
                 adapter.setDatas(liveDatas);
+                refreshListView.setOnRefreshListener(new OnRefreshListener() {
+                    @Override
+                    public void onDownPullRefresh() {
+                        Log.d("ClassificationFragment", "直接刷新了");
+                        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                            @Override
+                            public void success(String result) {
+                                Gson gson=new Gson();
+                                ClassificationBean classificationBean=gson.fromJson(result,ClassificationBean.class);
+                                liveDatas=classificationBean.getLive_review();
+                                adapter.setDatas(liveDatas);
+                                refreshListView.hideHeaderView();
+                                Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void failure() {
+
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onLoadingMore() {
+                        Log.d("ClassificationFragment", "直接加载了");
+                        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + nextPage + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                            @Override
+                            public void success(String result) {
+                                Gson gson=new Gson();
+                                ClassificationBean classBean=gson.fromJson(result,ClassificationBean.class);
+                                otherDatas=classBean.getLive_review();
+                                liveDatas.addAll(otherDatas);
+                                adapter.setDatas(liveDatas);
+                                adapter.notifyDataSetChanged();
+                                refreshListView.hideFooterView();
+                                Toast.makeText(context, "加载成功", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void failure() {
+                                refreshListView.hideFooterView();
+                            }
+                        });
+                        nextPage++;
+
+                    }
+                });
+
             }
 
             @Override
@@ -126,9 +185,10 @@ public class ClassificationFragment extends AbsBaseFragment {
                         @Override
                         public void success(String result) {
                             Gson gson = new Gson();
-                            ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
-                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
-                            adapter.setDatas(liveDatas);
+                            final ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                            liveDatas= classBean.getLive_review();
+
+
                         }
 
                         @Override

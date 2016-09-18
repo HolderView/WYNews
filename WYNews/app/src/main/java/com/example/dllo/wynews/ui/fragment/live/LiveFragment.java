@@ -41,9 +41,7 @@ public class LiveFragment extends AbsBaseFragment {
         fragments.add(HotLiveFragment.newInstance());
         fragments.add(ClassificationFragment.newInstance());
         viewPager.setAdapter(adapter);
-
         tabLayout.setupWithViewPager(viewPager);
-
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"));
         tabLayout.setTabTextColors(Color.parseColor("#ffb8cb"),Color.parseColor("#ffffff"));
 
