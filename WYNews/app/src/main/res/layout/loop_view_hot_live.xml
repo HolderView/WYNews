@@ -7,9 +7,9 @@
 
     <com.example.dllo.wynews.view.loopview.LoopView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:id="@+id/loopview_hot_live"
-        app:bottom_style="@integer/loop_no_descript_right"
+        app:bottom_style="@integer/loop_have_descript"
         app:rate="3"
         />
 </LinearLayout>

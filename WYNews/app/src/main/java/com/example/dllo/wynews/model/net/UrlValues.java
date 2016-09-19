@@ -36,6 +36,8 @@ public final class UrlValues {
     //财经
     public static final String CLASSIFICATION_CAIJING="http://data.live.126.net/livechannel/classify/15/";
     //HotLive页面
-    public static final String HOTLIVE="http://data.live.126.net/livechannel/previewlist.json";
+    public static final String HOTLIVE="http://data.live.126.net/livechannel/previewlist/";
+    //HotLive
+    public static final String HOTLIVE_JSON=".json";
 
 }

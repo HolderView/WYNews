@@ -9,8 +9,8 @@
     </style>
 
     <declare-styleable name="LoopView">
-        <attr name="rate" format="integer"></attr>
-        <attr name="bottom_style" format="integer|reference"></attr>
+        <attr name="rate" format="integer"/>
+        <attr name="bottom_style" format="integer|reference"/>
     </declare-styleable>
 
     <integer name="loop_have_descript">1</integer>

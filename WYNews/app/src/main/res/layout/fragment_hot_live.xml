@@ -7,5 +7,6 @@
     <com.example.dllo.wynews.model.refresh.RefreshListView
         android:id="@+id/rl_hot_live"
         android:layout_width="match_parent"
+        android:divider="@android:color/transparent"
         android:layout_height="match_parent" />
 </LinearLayout>

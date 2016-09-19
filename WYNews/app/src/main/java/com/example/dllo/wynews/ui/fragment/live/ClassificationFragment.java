@@ -20,6 +20,7 @@ import com.example.dllo.wynews.tools.ScreenSizeUtil;
 import com.example.dllo.wynews.ui.adapter.classification.ClassificationListViewAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,9 @@ public class ClassificationFragment extends AbsBaseFragment {
             rb_zixun, rb_yule, rb_bendi, rb_tiyu, rb_shishang, rb_qiche, rb_keji, rb_caijing, rb_shenghuo;
     private List<ClassificationBean.LiveReviewBean> liveDatas;
     private List<ClassificationBean.LiveReviewBean> otherDatas;
-    private int nextPage=2;
+    private String firstUrl=UrlValues.CLASSIFICATION_TOP100;
+    private String endUrl=UrlValues.CLASSIFICATION_JSON;
+    private int nextPage = 2;
 
 
     @Override
@@ -109,12 +112,12 @@ public class ClassificationFragment extends AbsBaseFragment {
                     @Override
                     public void onDownPullRefresh() {
                         Log.d("ClassificationFragment", "直接刷新了");
-                        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        VolleyInstance.getInstance().startJsonObjRequest(firstUrl+1+endUrl, new VolleyResult() {
                             @Override
                             public void success(String result) {
-                                Gson gson=new Gson();
-                                ClassificationBean classificationBean=gson.fromJson(result,ClassificationBean.class);
-                                liveDatas=classificationBean.getLive_review();
+                                Gson gson = new Gson();
+                                ClassificationBean classificationBean = gson.fromJson(result, ClassificationBean.class);
+                                liveDatas = classificationBean.getLive_review();
                                 adapter.setDatas(liveDatas);
                                 refreshListView.hideHeaderView();
                                 Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show();
@@ -131,12 +134,12 @@ public class ClassificationFragment extends AbsBaseFragment {
                     @Override
                     public void onLoadingMore() {
                         Log.d("ClassificationFragment", "直接加载了");
-                        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + nextPage + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                        VolleyInstance.getInstance().startJsonObjRequest(firstUrl + nextPage + endUrl, new VolleyResult() {
                             @Override
                             public void success(String result) {
-                                Gson gson=new Gson();
-                                ClassificationBean classBean=gson.fromJson(result,ClassificationBean.class);
-                                otherDatas=classBean.getLive_review();
+                                Gson gson = new Gson();
+                                ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
+                                otherDatas = classBean.getLive_review();
                                 liveDatas.addAll(otherDatas);
                                 adapter.setDatas(liveDatas);
                                 adapter.notifyDataSetChanged();
@@ -186,8 +189,10 @@ public class ClassificationFragment extends AbsBaseFragment {
                         public void success(String result) {
                             Gson gson = new Gson();
                             final ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
-                            liveDatas= classBean.getLive_review();
-
+                            List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
+                            adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_TOP100;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
 
                         }
 
@@ -205,6 +210,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_DAZHIBO;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -221,6 +228,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_ZAIXIANCHANG;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -231,13 +240,15 @@ public class ClassificationFragment extends AbsBaseFragment {
 
                     break;
                 case R.id.rb_classification_xingzaixian:
-                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_TOP100 + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
+                    VolleyInstance.getInstance().startJsonObjRequest(UrlValues.CLASSIFICATION_XINGZAIXIAN + 1 + UrlValues.CLASSIFICATION_JSON, new VolleyResult() {
                         @Override
                         public void success(String result) {
                             Gson gson = new Gson();
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_XINGZAIXIAN;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -254,6 +265,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_ZONGHENGTAN;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -271,6 +284,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_ZIXUN;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -288,6 +303,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_YULE;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -304,6 +321,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_BENDI;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -320,6 +339,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_TIYU;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -336,6 +357,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_SHISHANG;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -352,6 +375,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_QICHE;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -368,6 +393,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_KEJI;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -384,6 +411,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_CAIJING;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
@@ -401,6 +430,8 @@ public class ClassificationFragment extends AbsBaseFragment {
                             ClassificationBean classBean = gson.fromJson(result, ClassificationBean.class);
                             List<ClassificationBean.LiveReviewBean> liveDatas = classBean.getLive_review();
                             adapter.setDatas(liveDatas);
+                            firstUrl=UrlValues.CLASSIFICATION_SHENGHUO;
+                            endUrl=UrlValues.CLASSIFICATION_JSON;
                         }
 
                         @Override
