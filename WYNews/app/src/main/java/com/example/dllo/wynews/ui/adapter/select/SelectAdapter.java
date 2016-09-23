@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/21.
+ * 精选Adapter
  */
 public class SelectAdapter extends BaseAdapter {
     private List<SelectBean.T1467284926140Bean> datas;

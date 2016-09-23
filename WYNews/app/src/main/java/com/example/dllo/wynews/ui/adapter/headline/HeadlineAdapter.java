@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/22.
+ * 头条Adapter
  */
 public class HeadlineAdapter extends BaseAdapter {
     private List<HeadlineBean.T1348647909107Bean> datas;

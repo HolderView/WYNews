@@ -44,5 +44,12 @@ public final class UrlValues {
     public static final String SELECT_HTML="-20.html";
     //Headline(新闻头条)(无刷新加载)
     public static final String HEADLINE="http://c.3g.163.com/recommend/getSubDocPic?tid=T1348647909107&from=toutiao&size=20&prog=NOHEAD&offset=0&fn=2&passport=&devId=44t6%2B5mG3ACAOlQOCLuIHg%3D%3D&lat=&lon=&version=14.2&net=wifi&ts=1473231158&sign=5GqzD5yFT920iQKTNOyR3MwCzQuzy%2Buhs6NuDA7CsyF48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=wandoujia_news&mac=";
-
+    //Question(话题问吧)
+    public static final String QUESTION="http://c.m.163.com/newstopic/list/expert/5aSn6L%2Be/";
+    public static final String QUESTION_HTML="-10.html";
+    //Topic(话题话题)(头布局)
+    public static final String TOPIC_HEAD="http://c.3g.163.com/recommend/getChanRecomNews?channel=T1460094487214&size=5&passport=&devId=gDn9on2hlxLeU2KQPKO0Hg%3D%3D&lat=WFohXxen8gCvC1M3MWheog%3D%3D&lon=0vcjy5VjEu7Leev0BzKr4w%3D%3D&version=15.0&net=wifi&ts=1474444807&sign=nErd43f036fl4cRWPHkKz2RU2OaWq%2F5Fad2vej1JZtt48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=wandoujia_news&mac=l3cTD%2BGkuOp%2FGgZPUFWlsMniKsPhqwUPmAMQf86XLBg%3D";
+    //Topic
+    public static final String TOPIC="http://topic.comment.163.com/topic/list/subject/";
+    public static final String TOPIC_HTML="-10.html";
 }

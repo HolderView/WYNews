@@ -57,6 +57,7 @@ public class SelectFragment extends AbsBaseFragment {
     protected void initDatas() {
         adapter = new SelectAdapter(context);
         refreshListView.setAdapter(adapter);
+        refreshListView.setVerticalScrollBarEnabled(false);
         initNetWork();
         //刷新加载
         refreshListView.setOnRefreshListener(new OnRefreshListener() {

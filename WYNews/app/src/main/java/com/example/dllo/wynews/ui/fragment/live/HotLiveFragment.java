@@ -61,6 +61,7 @@ public class HotLiveFragment extends AbsBaseFragment {
     }
     //刷新数据 加载数据
     private void initRefreshDatas() {
+        refreshListView.setVerticalScrollBarEnabled(false);
         refreshListView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {

@@ -50,6 +50,10 @@ public class HeadlineFragment extends AbsBaseFragment {
     @Override
     protected void initDatas() {
         adapter=new HeadlineAdapter(context);
+        initNet();
+    }
+
+    private void initNet() {
         VolleyInstance.getInstance().startJsonObjRequest(UrlValues.HEADLINE, new VolleyResult() {
             @Override
             public void success(String result) {
@@ -63,8 +67,8 @@ public class HeadlineFragment extends AbsBaseFragment {
                 datas.remove(0);
                 adapter.setDatas(datas);
                 listView.setAdapter(adapter);
-
-
+                //去掉listview滑动条
+                listView.setVerticalScrollBarEnabled(false);
             }
 
             @Override
@@ -82,7 +86,7 @@ public class HeadlineFragment extends AbsBaseFragment {
                 Log.d("HeadlineFragment", datas.get(0).getAds().get(i).getImgsrc());
                 LoopViewEntity e = new LoopViewEntity();
                 e.setImageUrl(datas.get(0).getAds().get(i).getImgsrc());
-                e.setDescript(datas.get(i).getTitle());
+                e.setDescript(datas.get(0).getAds().get(i).getTitle());
                 loopViewEntities.add(e);
             }
 

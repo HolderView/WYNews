@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Created by dllo on 16/9/9.
  * 新闻页
+ * Headline头条 Select精选
  */
 public class NewsFragment extends AbsBaseFragment {
     private TabLayout tabLayout;

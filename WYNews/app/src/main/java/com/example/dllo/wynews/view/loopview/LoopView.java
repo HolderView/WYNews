@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dllo on 16/9/18.
+ * 轮播图
  */
 public class LoopView extends FrameLayout implements ViewPager.OnPageChangeListener, View.OnTouchListener {
     protected ViewPager viewPager;
