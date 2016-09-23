@@ -70,7 +70,6 @@ public class HotLiveFragment extends AbsBaseFragment {
                         Gson gson=new Gson();
                         HotLiveBean hotLiveBean=gson.fromJson(result,HotLiveBean.class);
                         datas=hotLiveBean.getLive_review();
-
                         adapter.setDatas(datas);
                         refreshListView.setAdapter(adapter);
                         refreshListView.hideHeaderView();

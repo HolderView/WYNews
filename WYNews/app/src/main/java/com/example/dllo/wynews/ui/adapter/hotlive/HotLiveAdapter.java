@@ -58,7 +58,10 @@ public class HotLiveAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
         }
-        Picasso.with(context).load(datas.get(position).getImage()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4).into(viewHolder.iv_item_hot_live_live);
+        Picasso.with(context).load(datas.get(position).getImage()).
+                resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                .into(viewHolder.iv_item_hot_live_live);
+
         viewHolder.tv_item_hot_live_room_name.setText(datas.get(position).getRoomName());
         viewHolder.tv_item_hot_live_user_count.setText(datas.get(position).getUserCount()+"参与");
         return convertView;
