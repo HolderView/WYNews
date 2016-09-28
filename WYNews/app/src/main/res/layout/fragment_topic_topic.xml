@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <com.example.dllo.wynews.model.refresh.RefreshListView
+        android:divider="@android:color/transparent"
         android:id="@+id/rl_topic"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

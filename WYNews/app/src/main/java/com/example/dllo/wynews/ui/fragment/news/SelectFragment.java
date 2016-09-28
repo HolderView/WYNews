@@ -34,7 +34,7 @@ public class SelectFragment extends AbsBaseFragment {
     private RefreshListView refreshListView;
     private SelectAdapter adapter;
     private List<SelectBean.T1467284926140Bean> other = new ArrayList<>();
-    private List<SelectBean.T1467284926140Bean> datas=new ArrayList<>();
+    private List<SelectBean.T1467284926140Bean> datas = new ArrayList<>();
 
     public static SelectFragment newInstance() {
         Bundle args = new Bundle();
@@ -72,6 +72,7 @@ public class SelectFragment extends AbsBaseFragment {
                         datas = selectBean.getT1467284926140();
                         datas.remove(0);
                         adapter.setDatas(datas);
+                        nextNum = 20;
                     }
 
                     @Override

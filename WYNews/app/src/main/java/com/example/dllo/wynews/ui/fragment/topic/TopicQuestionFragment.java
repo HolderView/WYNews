@@ -61,6 +61,7 @@ public class TopicQuestionFragment extends AbsBaseFragment {
                 initNet();
                 refreshListView.hideHeaderView();
                 Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show();
+                nextPage = 10;
             }
 
             @Override

@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="4">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -50,13 +50,13 @@
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv_item_topic_only_one"
+                            android:id="@+id/iv_item_topic_only_one_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_name_one"
+                            android:id="@+id/tv_item_topic_only_name_one_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11"
@@ -64,7 +64,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_concern_count_one"
+                            android:id="@+id/tv_item_topic_only_concern_count_one_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11" />
@@ -78,13 +78,13 @@
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv_item_topic_only_two"
+                            android:id="@+id/iv_item_topic_only_two_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_name_two"
+                            android:id="@+id/tv_item_topic_only_name_two_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11"
@@ -92,7 +92,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_concern_count_two"
+                            android:id="@+id/tv_item_topic_only_concern_count_two_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11" />
@@ -106,13 +106,13 @@
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv_item_topic_only_three"
+                            android:id="@+id/iv_item_topic_only_three_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_name_three"
+                            android:id="@+id/tv_item_topic_only_name_three_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11"
@@ -120,7 +120,34 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tv_item_topic_only_concern_count_three"
+                            android:id="@+id/tv_item_topic_only_concern_count_three_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_item_topic_only_four_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/tv_item_topic_only_name_four_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tv_item_topic_only_concern_count_four_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11" />

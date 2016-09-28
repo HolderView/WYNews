@@ -76,6 +76,7 @@ public class SelectAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         int type = getItemViewType(position);
+        Log.d("iii", "type:" + type);
         ThreadViewHolder threadViewHolder = null;// 一张大图
         SecondViewHolder secondViewHolder = null; // 3
         FirstViewHolder firstViewHolder = null; // 左侧图片
@@ -131,7 +132,10 @@ public class SelectAdapter extends BaseAdapter {
                 secondViewHolder.tv_item_select_second_number.setText(datas.get(position).getVotecount() + "跟帖");
                 break;
             case LEFT_IMG:
-                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 4, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(firstViewHolder.iv_item_select_first);
+                if (datas.get(position).getImgsrc()!=null){
+                    Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 4, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(firstViewHolder.iv_item_select_first);
+                }
+
                 firstViewHolder.tv_item_select_first_title.setText(datas.get(position).getTitle());
                 firstViewHolder.tv_item_select_first_from.setText(datas.get(position).getSource());
                 firstViewHolder.tv_item_select_first_number.setText(datas.get(position).getVotecount() + "跟帖");

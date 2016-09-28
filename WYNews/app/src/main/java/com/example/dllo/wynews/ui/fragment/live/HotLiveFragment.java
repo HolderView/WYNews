@@ -33,8 +33,8 @@ public class HotLiveFragment extends AbsBaseFragment {
     private LoopView loopView;
     private List<LoopViewEntity> loopViewEntities = new ArrayList<>();
     private RefreshListView refreshListView;
-    private int nextPage=2;
-    private List<HotLiveBean.LiveReviewBean> other=new ArrayList<>();
+    private int nextPage = 2;
+    private List<HotLiveBean.LiveReviewBean> other = new ArrayList<>();
 
     public static HotLiveFragment newInstance() {
         HotLiveFragment fragment = new HotLiveFragment();
@@ -59,6 +59,7 @@ public class HotLiveFragment extends AbsBaseFragment {
         initRefreshDatas();
 
     }
+
     //刷新数据 加载数据
     private void initRefreshDatas() {
         refreshListView.setVerticalScrollBarEnabled(false);
@@ -68,13 +69,14 @@ public class HotLiveFragment extends AbsBaseFragment {
                 VolleyInstance.getInstance().startJsonObjRequest(UrlValues.HOTLIVE + 1 + UrlValues.HOTLIVE_JSON, new VolleyResult() {
                     @Override
                     public void success(String result) {
-                        Gson gson=new Gson();
-                        HotLiveBean hotLiveBean=gson.fromJson(result,HotLiveBean.class);
-                        datas=hotLiveBean.getLive_review();
+                        Gson gson = new Gson();
+                        HotLiveBean hotLiveBean = gson.fromJson(result, HotLiveBean.class);
+                        datas = hotLiveBean.getLive_review();
                         adapter.setDatas(datas);
                         refreshListView.setAdapter(adapter);
                         refreshListView.hideHeaderView();
                         Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show();
+                        nextPage = 2;
 
                     }
 
@@ -91,9 +93,9 @@ public class HotLiveFragment extends AbsBaseFragment {
                 VolleyInstance.getInstance().startJsonObjRequest(UrlValues.HOTLIVE + nextPage + UrlValues.HOTLIVE_JSON, new VolleyResult() {
                     @Override
                     public void success(String result) {
-                        Gson gson=new Gson();
-                        HotLiveBean hotLiveBean=gson.fromJson(result,HotLiveBean.class);
-                        other=hotLiveBean.getLive_review();
+                        Gson gson = new Gson();
+                        HotLiveBean hotLiveBean = gson.fromJson(result, HotLiveBean.class);
+                        other = hotLiveBean.getLive_review();
                         datas.addAll(other);
                         adapter.setDatas(datas);
                         adapter.notifyDataSetChanged();
@@ -110,9 +112,10 @@ public class HotLiveFragment extends AbsBaseFragment {
             }
         });
     }
+
     //设置网络数据
     private void initNetDatas() {
-        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.HOTLIVE+1+UrlValues.HOTLIVE_JSON, new VolleyResult() {
+        VolleyInstance.getInstance().startJsonObjRequest(UrlValues.HOTLIVE + 1 + UrlValues.HOTLIVE_JSON, new VolleyResult() {
             @Override
             public void success(String result) {
                 Log.d("HotLiveFragment", result);

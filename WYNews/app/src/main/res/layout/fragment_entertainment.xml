@@ -5,9 +5,9 @@
     tools:context="com.example.dllo.wynews.ui.fragment.news.EntertainmentFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.example.dllo.wynews.model.refresh.RefreshListView
+        android:id="@+id/rl_entertainment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="娱乐" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

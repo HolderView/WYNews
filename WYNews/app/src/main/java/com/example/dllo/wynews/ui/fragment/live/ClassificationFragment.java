@@ -97,6 +97,7 @@ public class ClassificationFragment extends AbsBaseFragment {
                                 adapter.setDatas(liveDatas);
                                 refreshListView.hideHeaderView();
                                 Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show();
+                                nextPage=2;
                             }
 
                             @Override
