@@ -125,6 +125,7 @@ public class EntertainmentFragment extends AbsBaseFragment {
             }
         });
 
+
     }
 
     private void initHeadView(List<EntertainmentBean.T1348648517839Bean> datas) {

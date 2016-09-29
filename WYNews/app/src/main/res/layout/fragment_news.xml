@@ -37,6 +37,7 @@
 
     </RelativeLayout>
     <LinearLayout
+        android:id="@+id/ll_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
@@ -49,8 +50,17 @@
             android:layout_height="wrap_content"
             app:tabMaxWidth="100dp"
             android:background="#ffffff" />
-        <ImageView
+        <TextView
+            android:layout_weight="7.7"
+            android:padding="15dp"
+            android:layout_gravity="center"
+            android:id="@+id/tv_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="切换栏目"/>
 
+        <ImageView
             android:layout_weight="2"
             android:layout_gravity="center"
             android:id="@+id/iv_popupwindow_sel"

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="100dp">
 
                 <ImageView
                     android:id="@+id/iv_video_bg"
@@ -27,40 +31,54 @@
                     android:src="@mipmap/ad0" />
 
                 <TextView
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@android:color/white"
                     android:id="@+id/tv_video_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="number" />
-                <TextView
-                    android:layout_toLeftOf="@id/tv_video_number"
                     android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="number" />
+
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@android:color/white"
                     android:id="@+id/tv_video_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@id/tv_video_number"
                     android:text="time" />
 
 
             </RelativeLayout>
 
             <TextView
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_video_title"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="title" />
 
             <LinearLayout
+                android:gravity="center_vertical"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:src="@mipmap/ic_launcher"
                     android:id="@+id/iv_video_src"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp"
                     android:id="@+id/tv_video_from"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
