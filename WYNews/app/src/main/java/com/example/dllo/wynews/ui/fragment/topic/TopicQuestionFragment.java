@@ -1,9 +1,11 @@
 package com.example.dllo.wynews.ui.fragment.topic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.model.refresh.OnRefreshListener;
 import com.example.dllo.wynews.model.refresh.RefreshListView;
+import com.example.dllo.wynews.ui.activity.TopicQuestionActivity;
 import com.example.dllo.wynews.ui.adapter.question.QuestionAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
@@ -55,6 +58,16 @@ public class TopicQuestionFragment extends AbsBaseFragment {
         refreshListView.setVerticalScrollBarEnabled(false);
         initNet();
         initHeadView();
+        refreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(context,TopicQuestionActivity.class);
+                intent.putExtra("topic_question_expertId",datas.get(position-2).getExpertId());
+                intent.putExtra("topic_question_picurl",datas.get(position-2).getPicurl());
+                intent.putExtra("topic_question_alias",datas.get(position-2).getAlias());
+                startActivity(intent);
+            }
+        });
         refreshListView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {

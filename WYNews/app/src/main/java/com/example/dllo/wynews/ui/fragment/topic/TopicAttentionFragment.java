@@ -1,7 +1,10 @@
 package com.example.dllo.wynews.ui.fragment.topic;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.wynews.R;
@@ -11,17 +14,19 @@ import com.example.dllo.wynews.model.net.UrlValues;
 import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.tools.ScreenSizeUtil;
+import com.example.dllo.wynews.ui.activity.TopicQuestionActivity;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dllo on 16/9/12.
  * 话题 关注
  */
-public class TopicAttentionFragment extends AbsBaseFragment {
+public class TopicAttentionFragment extends AbsBaseFragment implements View.OnClickListener{
     private TextView tv_attention_see_name_one, tv_attention_see_concern_count_one, tv_attention_see_talk_count_one,
             tv_attention_see_name_two, tv_attention_see_concern_count_two, tv_attention_see_talk_count_two,
             tv_attention_see_name_three, tv_attention_see_concern_count_three, tv_attention_see_talk_count_three,
@@ -30,10 +35,11 @@ public class TopicAttentionFragment extends AbsBaseFragment {
             tv_attention_question_name_two, tv_attention_question_concern_count_two, tv_attention_question_question_count_two,
             tv_attention_question_name_three, tv_attention_question_concern_count_three, tv_attention_question_question_count_three,
             tv_attention_question_name_four, tv_attention_question_concern_count_four, tv_attention_question_question_count_four;
-
+    private LinearLayout ll_attention_question_one,ll_attention_question_two,ll_attention_question_three,ll_attention_question_four,ll_attention_see_one
+            ,ll_attention_see_two,ll_attention_see_three,ll_attention_see_four;
     private ImageView iv_attention_see_one, iv_attention_see_two, iv_attention_see_three, iv_attention_see_four,
             iv_attention_question_one, iv_attention_question_two, iv_attention_question_three, iv_attention_question_four;
-
+    private List<QuestionBean.DataBean.ExpertListBean> newQuestionDatas=new ArrayList<>();
     public static TopicAttentionFragment newInstance() {
         TopicAttentionFragment fragment = new TopicAttentionFragment();
         return fragment;
@@ -46,6 +52,14 @@ public class TopicAttentionFragment extends AbsBaseFragment {
 
     @Override
     protected void initViews() {
+        ll_attention_question_one=byView(R.id.ll_attention_question_one);
+        ll_attention_question_two=byView(R.id.ll_attention_question_two);
+        ll_attention_question_three=byView(R.id.ll_attention_question_three);
+        ll_attention_question_four=byView(R.id.ll_attention_question_four);
+        ll_attention_see_one=byView(R.id.ll_attention_see_one);
+        ll_attention_see_two=byView(R.id.ll_attention_see_two);
+        ll_attention_see_three=byView(R.id.ll_attention_see_three);
+        ll_attention_see_four=byView(R.id.ll_attention_see_four);
         tv_attention_see_name_one = byView(R.id.tv_attention_see_name_one);
         tv_attention_see_concern_count_one = byView(R.id.tv_attention_see_concern_count_one);
         tv_attention_see_talk_count_one = byView(R.id.tv_attention_see_talk_count_one);
@@ -124,6 +138,7 @@ public class TopicAttentionFragment extends AbsBaseFragment {
                 Gson gson = new Gson();
                 QuestionBean questionBean = gson.fromJson(result, QuestionBean.class);
                 List<QuestionBean.DataBean.ExpertListBean> been = questionBean.getData().getExpertList();
+                newQuestionDatas.addAll(been);
                 Picasso.with(context).load(been.get(0).getHeadpicurl())
                         .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH)/8,ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/14).into(iv_attention_question_one);
                 Picasso.with(context).load(been.get(1).getHeadpicurl())
@@ -144,6 +159,10 @@ public class TopicAttentionFragment extends AbsBaseFragment {
                 tv_attention_question_question_count_two.setText(been.get(1).getQuestionCount() + "提问");
                 tv_attention_question_question_count_three.setText(been.get(2).getQuestionCount() + "提问");
                 tv_attention_question_question_count_four.setText(been.get(3).getQuestionCount() + "提问");
+                ll_attention_question_one.setOnClickListener(TopicAttentionFragment.this);
+                ll_attention_question_two.setOnClickListener(TopicAttentionFragment.this);
+                ll_attention_question_three.setOnClickListener(TopicAttentionFragment.this);
+                ll_attention_question_four.setOnClickListener(TopicAttentionFragment.this);
             }
 
             @Override
@@ -152,5 +171,39 @@ public class TopicAttentionFragment extends AbsBaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ll_attention_question_one:
+                Intent intent=new Intent(context, TopicQuestionActivity.class);
+                intent.putExtra("topic_question_expertId",newQuestionDatas.get(0).getExpertId());
+                intent.putExtra("topic_question_picurl",newQuestionDatas.get(0).getPicurl());
+                intent.putExtra("topic_question_alias",newQuestionDatas.get(0).getAlias());
+                startActivity(intent);
+                break;
+            case R.id.ll_attention_question_two:
+                Intent intent2=new Intent(context, TopicQuestionActivity.class);
+                intent2.putExtra("topic_question_expertId",newQuestionDatas.get(1).getExpertId());
+                intent2.putExtra("topic_question_picurl",newQuestionDatas.get(1).getPicurl());
+                intent2.putExtra("topic_question_alias",newQuestionDatas.get(1).getAlias());
+                startActivity(intent2);
+                break;
+            case R.id.ll_attention_question_three:
+                Intent intent3=new Intent(context, TopicQuestionActivity.class);
+                intent3.putExtra("topic_question_expertId",newQuestionDatas.get(2).getExpertId());
+                intent3.putExtra("topic_question_picurl",newQuestionDatas.get(2).getPicurl());
+                intent3.putExtra("topic_question_alias",newQuestionDatas.get(2).getAlias());
+                startActivity(intent3);
+                break;
+            case R.id.ll_attention_question_four:
+                Intent intent4=new Intent(context, TopicQuestionActivity.class);
+                intent4.putExtra("topic_question_expertId",newQuestionDatas.get(3).getExpertId());
+                intent4.putExtra("topic_question_picurl",newQuestionDatas.get(3).getPicurl());
+                intent4.putExtra("topic_question_alias",newQuestionDatas.get(3).getAlias());
+                startActivity(intent4);
+                break;
+        }
     }
 }

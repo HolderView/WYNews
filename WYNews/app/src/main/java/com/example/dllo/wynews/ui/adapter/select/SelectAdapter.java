@@ -1,6 +1,7 @@
 package com.example.dllo.wynews.ui.adapter.select;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.model.bean.SelectBean;
 import com.example.dllo.wynews.tools.ScreenSizeUtil;
@@ -118,22 +120,38 @@ public class SelectAdapter extends BaseAdapter {
             case TYPE_ONE_IMG:
                 // position 0-19
                 // datas 1-20
-                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH), ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 5).into(threadViewHolder.iv_item_select_thread);
+//                Glide.with(context).load(datas.get(position).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH), ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 5).into(threadViewHolder.iv_item_select_thread);
+                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH), ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 5)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(threadViewHolder.iv_item_select_thread);
                 threadViewHolder.tv_item_select_thread_title.setText(datas.get(position).getTitle());
                 threadViewHolder.tv_item_select_thread_from.setText(datas.get(position).getSource());
                 threadViewHolder.tv_item_select_thread_number.setText(datas.get(position).getVotecount() + "跟帖");
                 break;
             case THREE_IMG:
-                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_one);
-                Picasso.with(context).load(datas.get(position).getImgextra().get(0).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_two);
-                Picasso.with(context).load(datas.get(position).getImgextra().get(1).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_three);
+//                Glide.with(context).load(datas.get(position).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_one);
+//                Glide.with(context).load(datas.get(position).getImgextra().get(0).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_two);
+//                Glide.with(context).load(datas.get(position).getImgextra().get(1).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(secondViewHolder.iv_item_select_second_three);
+                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(secondViewHolder.iv_item_select_second_one);
+                Picasso.with(context).load(datas.get(position).getImgextra().get(0).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(secondViewHolder.iv_item_select_second_two);
+                Picasso.with(context).load(datas.get(position).getImgextra().get(1).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(secondViewHolder.iv_item_select_second_three);
                 secondViewHolder.tv_item_select_second_title.setText(datas.get(position).getTitle());
                 secondViewHolder.tv_item_select_second_from.setText(datas.get(position).getSource());
                 secondViewHolder.tv_item_select_second_number.setText(datas.get(position).getVotecount() + "跟帖");
                 break;
             case LEFT_IMG:
                 if (datas.get(position).getImgsrc()!=null){
-                    Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 4, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(firstViewHolder.iv_item_select_first);
+//                    Glide.with(context).load(datas.get(position).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 4, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(firstViewHolder.iv_item_select_first);
+                    Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 4, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                            .centerCrop()
+                            .config(Bitmap.Config.RGB_565)
+                            .into(firstViewHolder.iv_item_select_first);
                 }
 
                 firstViewHolder.tv_item_select_first_title.setText(datas.get(position).getTitle());

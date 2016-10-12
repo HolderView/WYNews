@@ -1,6 +1,7 @@
 package com.example.dllo.wynews.ui.adapter.classification;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,10 +62,10 @@ public class ClassificationListViewAdapter extends BaseAdapter {
         }
 
         Picasso.with(context).load(datas.get(position).getImage())
-                .resize(ScreenSizeUtil
-                        .getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil
-                .getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4).
-                into(viewHolder.iv_item_classification_image);
+                .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil
+                .getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                .config(Bitmap.Config.RGB_565)
+                .into(viewHolder.iv_item_classification_image);
         Log.d("ClassificationListViewA", datas.get(position).getRoomName());
         viewHolder.tv_item_classification_room_name.setText(datas.get(position).getRoomName());
         viewHolder.tv_item_classification_user_count.setText(datas.get(position).getUserCount()+"参与");

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.wynews.R;
@@ -130,28 +131,35 @@ public class TopicAdapter extends BaseAdapter {
         }
         switch (type) {
             case TYPE_NO_PIC:
-                if (!datas.get(position).getTalkContent().get(0).getUserHeadPicUrl().isEmpty()) {
-                    Picasso.with(context).load(datas.get(position).getTalkContent().get(0).getUserHeadPicUrl())
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 25)
-                            .into(firstViewHolder.iv_item_topic_first_first);
-                } else {
+                if (datas.get(position).getTalkCount()==0){
+                    firstViewHolder.tv_item_topic_first_content.setText(datas.get(position).getAlias());
+                    firstViewHolder.ll_item_topic_first_first.setVisibility(View.GONE);
+                    firstViewHolder.ll_item_topic_first_second.setVisibility(View.GONE);
+
+                }else {
+                    if (!datas.get(position).getTalkContent().get(0).getUserHeadPicUrl().isEmpty()&&!datas.get(position).getTalkContent().get(0).getUserHeadPicUrl().equals("")) {
+                        Picasso.with(context).load(datas.get(position).getTalkContent().get(0).getUserHeadPicUrl())
+                                .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 25)
+                                .into(firstViewHolder.iv_item_topic_first_first);
+                    } else {
 //                    firstViewHolder.iv_item_topic_first_first.setMaxWidth(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15);
 //                    firstViewHolder.iv_item_topic_first_first.setMaxHeight(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 25);
-                    firstViewHolder.iv_item_topic_first_first.setImageResource(R.mipmap.a_5);
-                }
-                if (!datas.get(position).getTalkContent().get(1).getUserHeadPicUrl().isEmpty()) {
-                    Picasso.with(context).load(datas.get(position).getTalkContent().get(1).getUserHeadPicUrl())
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 25)
-                            .into(firstViewHolder.iv_item_topic_first_second);
-                } else {
+                        firstViewHolder.iv_item_topic_first_first.setImageResource(R.mipmap.a_5);
+                    }
+                    if (!datas.get(position).getTalkContent().get(1).getUserHeadPicUrl().isEmpty()) {
+                        Picasso.with(context).load(datas.get(position).getTalkContent().get(1).getUserHeadPicUrl())
+                                .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 25)
+                                .into(firstViewHolder.iv_item_topic_first_second);
+                    } else {
 //                    int wSecond=firstViewHolder.iv_item_topic_first_second.getWidth();
 //                    wSecond=ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 15;
 //                    firstViewHolder.iv_item_topic_first_second.setMaxWidth(40);
-                    firstViewHolder.iv_item_topic_first_second.setImageResource(R.mipmap.a_5);
+                        firstViewHolder.iv_item_topic_first_second.setImageResource(R.mipmap.a_5);
+                    }
+                    firstViewHolder.tv_item_topic_first_name.setText("#" + datas.get(position).getName() + "#");
+                    firstViewHolder.tv_item_topic_first_first.setText(" " + datas.get(position).getTalkContent().get(0).getContent() + " ");
+                    firstViewHolder.tv_item_topic_first_second.setText(" " + datas.get(position).getTalkContent().get(1).getContent() + " ");
                 }
-                firstViewHolder.tv_item_topic_first_name.setText("#" + datas.get(position).getName() + "#");
-                firstViewHolder.tv_item_topic_first_first.setText(" " + datas.get(position).getTalkContent().get(0).getContent() + " ");
-                firstViewHolder.tv_item_topic_first_second.setText(" " + datas.get(position).getTalkContent().get(1).getContent() + " ");
                 firstViewHolder.tv_item_topic_first_classification.setText(datas.get(position).getClassification());
                 firstViewHolder.tv_item_first_concerncount.setText(datas.get(position).getConcernCount() + "关注");
                 firstViewHolder.tv_item_first_talkcount.setText(datas.get(position).getTalkCount() + "讨论");
@@ -203,10 +211,14 @@ public class TopicAdapter extends BaseAdapter {
 
     //没有图片的行布局
     class FirstViewHolder {
-        private TextView tv_item_topic_first_name, tv_item_topic_first_first, tv_item_topic_first_second, tv_item_topic_first_classification, tv_item_first_concerncount, tv_item_first_talkcount;
+        private TextView tv_item_topic_first_content,tv_item_topic_first_name, tv_item_topic_first_first, tv_item_topic_first_second, tv_item_topic_first_classification, tv_item_first_concerncount, tv_item_first_talkcount;
         private CircleImageView iv_item_topic_first_first, iv_item_topic_first_second;
+        private LinearLayout ll_item_topic_first_first,ll_item_topic_first_second;
 
         public FirstViewHolder(View view) {
+            ll_item_topic_first_first = (LinearLayout) view.findViewById(R.id.ll_item_topic_first_first);
+            ll_item_topic_first_second = (LinearLayout) view.findViewById(R.id.ll_item_topic_first_second);
+            tv_item_topic_first_content = (TextView) view.findViewById(R.id.tv_item_topic_first_content);
             tv_item_topic_first_name = (TextView) view.findViewById(R.id.tv_item_topic_first_name);
             tv_item_topic_first_first = (TextView) view.findViewById(R.id.tv_item_topic_first_first);
             tv_item_topic_first_second = (TextView) view.findViewById(R.id.tv_item_topic_first_second);

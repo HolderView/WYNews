@@ -62,6 +62,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_see_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -123,6 +124,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_see_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -184,6 +186,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_see_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -245,6 +248,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_see_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -325,6 +329,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_question_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -386,6 +391,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_question_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -447,6 +453,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_question_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -508,6 +515,7 @@
                 android:background="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/ll_attention_question_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

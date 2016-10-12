@@ -1,6 +1,7 @@
 package com.example.dllo.wynews.ui.adapter.picture;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class PictureAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         int a = Integer.parseInt(datas.get(position).getSetid()) % 2;
-        if (a == 0) {
+        if (a == 0 || datas.get(position).getPics().isEmpty()) {
             return TYPE_ONE;
         } else {
             return TYPE_MORE;
@@ -95,13 +96,13 @@ public class PictureAdapter extends BaseAdapter {
         }
         switch (b) {
             case TYPE_ONE:
-                if (datas.get(position).getPics().size() != 0 && null != datas.get(position).getPics()) {
+                if (datas.get(position).getPics().size() != 0 && datas.get(position).getPics().isEmpty()) {
                     Picasso.with(context).load(datas.get(position).getPics().get(0))
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH), ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 4)
                             .into(firstViewHolder.iv_item_picture_bg_first);
                 } else {
                     Picasso.with(context).load(datas.get(position).getCover())
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH), ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 4)
                             .into(firstViewHolder.iv_item_picture_bg_first);
                 }
                 firstViewHolder.tv_item_picture_number_first.setText(datas.get(position).getImgsum() + "pics");
@@ -109,15 +110,16 @@ public class PictureAdapter extends BaseAdapter {
                 firstViewHolder.tv_item_picture_count_number_first.setText(datas.get(position).getReplynum() + "跟帖");
                 break;
             case TYPE_MORE:
-                if (datas.get(position).getPics() != null) {
+                Log.d("iiiii", "datas.get(position).getPics():" + datas.get(position).getPics());
+                if (datas.get(position).getPics() != null && !datas.get(position).getPics().isEmpty()) {
                     Picasso.with(context).load(datas.get(position).getPics().get(0))
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH)/3*2,ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3 * 2, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 4)
                             .into(secondViewHolder.iv_item_picture_second_one);
                     Picasso.with(context).load(datas.get(position).getPics().get(1))
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH)/3,ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/8)
+                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
                             .into(secondViewHolder.iv_item_picture_second_two);
                     Picasso.with(context).load(datas.get(position).getPics().get(2))
-                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH)/3,ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/8)
+                            .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
                             .into(secondViewHolder.iv_item_picture_second_three);
                 }
                 secondViewHolder.tv_item_picture_number_second.setText(datas.get(position).getImgsum() + "pics");

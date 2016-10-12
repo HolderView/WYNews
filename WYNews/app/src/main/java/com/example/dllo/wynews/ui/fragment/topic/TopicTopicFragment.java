@@ -130,8 +130,8 @@ public class TopicTopicFragment extends AbsBaseFragment {
                 tv_item_topic_head_three = (TextView) view.findViewById(R.id.tv_item_topic_head_three);
                 tv_item_topic_head_four = (TextView) view.findViewById(R.id.tv_item_topic_head_four);
                 tv_item_topic_head_five = (TextView) view.findViewById(R.id.tv_item_topic_head_five);
-                Log.d("TopicTopicFragment", topicHeadBean.get话题().get(0).getPicUrl());
-                Log.d("TopicTopicFragment", topicHeadBean.get话题().get(0).getTopicName());
+                //Log.d("TopicTopicFragment", topicHeadBean.get话题().get(0).getPicUrl());
+                //Log.d("TopicTopicFragment", topicHeadBean.get话题().get(0).getTopicName());
                 Picasso.with(context).load(topicHeadBean.get话题().get(0).getPicUrl())
                         .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 6)
                         .into(iv_item_topic_head_one);

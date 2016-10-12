@@ -1,12 +1,14 @@
 package com.example.dllo.wynews.ui.fragment.news;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.dllo.wynews.R;
@@ -17,6 +19,9 @@ import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.model.refresh.OnRefreshListener;
 import com.example.dllo.wynews.model.refresh.RefreshListView;
+import com.example.dllo.wynews.ui.activity.EntertainmentMorePicActivity;
+import com.example.dllo.wynews.ui.activity.SelectActivity;
+import com.example.dllo.wynews.ui.activity.SelectMorePicActivity;
 import com.example.dllo.wynews.ui.adapter.entertainment.EntertainmentAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.example.dllo.wynews.view.loopview.LoopView;
@@ -61,6 +66,23 @@ public class EntertainmentFragment extends AbsBaseFragment {
         adapter = new EntertainmentAdapter(context);
         refreshListView.setAdapter(adapter);
         initNet();
+        refreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (datas.get(position-2).getImgextra()!=null){
+                    Intent intent=new Intent(context,SelectMorePicActivity.class);
+                    intent.putExtra("select_photo_set_id",datas.get(position-2).getPhotosetID());
+                    intent.putExtra("select_more_pic_replyCount",datas.get(position-2).getReplyCount()+"");
+                    intent.putExtra("select_more_pic_title",datas.get(position-2).getTitle());
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(context,SelectActivity.class);
+                    intent.putExtra("select_url",datas.get(position-2).getUrl());
+                    intent.putExtra("select_replyCount",datas.get(position-2).getReplyCount());
+                    startActivity(intent);
+                }
+            }
+        });
         refreshListView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {
@@ -128,7 +150,7 @@ public class EntertainmentFragment extends AbsBaseFragment {
 
     }
 
-    private void initHeadView(List<EntertainmentBean.T1348648517839Bean> datas) {
+    private void initHeadView(final List<EntertainmentBean.T1348648517839Bean> datas) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_entertainment_head_view, null);
         loopView = (LoopView) view.findViewById(R.id.loopview_entertainment);
         for (int i = 0; i < datas.get(0).getAds().size(); i++) {
@@ -142,7 +164,12 @@ public class EntertainmentFragment extends AbsBaseFragment {
         loopView.setOnItemClickListener(new LoopView.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(context, "第" + position + "行", Toast.LENGTH_SHORT).show();
+                if (datas.get(0).getAds().get(position).getTag().equals("photoset")){
+                    Intent intent=new Intent(context,EntertainmentMorePicActivity.class);
+                    intent.putExtra("entertainment_more_pic_id",datas.get(0).getAds().get(position).getUrl());
+                    intent.putExtra("entertainment_more_pic_title",datas.get(0).getAds().get(position).getTitle());
+                    startActivity(intent);
+                }
             }
         });
     }

@@ -89,6 +89,24 @@ public class EntertainmentBean {
          */
 
         private List<ImgextraBean> imgextra;
+        private String url_3w;
+        private String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getUrl_3w() {
+            return url_3w;
+        }
+
+        public void setUrl_3w(String url_3w) {
+            this.url_3w = url_3w;
+        }
 
         public String getPostid() {
             return postid;

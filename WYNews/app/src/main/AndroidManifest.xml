@@ -20,6 +20,10 @@
         <activity android:name=".ui.activity.WelcomeActivity"/>
         <activity android:name=".ui.activity.SettingsActivity"/>
         <activity android:name=".ui.activity.LoginActivity"/>
+        <activity android:name=".ui.activity.SelectActivity"/>
+        <activity android:name=".ui.activity.SelectMorePicActivity" android:process=":picture"/>
+        <activity android:name=".ui.activity.TopicQuestionActivity" android:process=":picture"/>
+        <activity android:name=".ui.activity.EntertainmentMorePicActivity" android:process=":picture"/>
     </application>
 
 </manifest>

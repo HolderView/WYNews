@@ -168,7 +168,7 @@ public class NewsFragment extends AbsBaseFragment {
                             iv_title_sel.setImageResource(R.mipmap.a0n);
                         }
                     });
-                    switch (viewPager.getCurrentItem()){
+                    switch (viewPager.getCurrentItem()) {
                         case 0:
                             tv_news_popup_window_headline.setPadding(5, 15, 5, 15);
                             tv_news_popup_window_headline.setTextColor(Color.WHITE);
@@ -210,8 +210,6 @@ public class NewsFragment extends AbsBaseFragment {
             }
         });
         Log.d("pppp", "viewPager.getCurrentItem():" + viewPager.getCurrentItem());
-
-
 
 
     }

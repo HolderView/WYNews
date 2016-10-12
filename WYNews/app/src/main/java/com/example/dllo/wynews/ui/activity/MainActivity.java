@@ -56,5 +56,8 @@ public class MainActivity extends AbsBaseActivity {
         mainRg.check(R.id.rb_main_news);
     }
 
-
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
 }

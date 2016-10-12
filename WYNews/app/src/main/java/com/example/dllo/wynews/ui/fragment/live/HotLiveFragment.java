@@ -98,7 +98,6 @@ public class HotLiveFragment extends AbsBaseFragment {
                         other = hotLiveBean.getLive_review();
                         datas.addAll(other);
                         adapter.setDatas(datas);
-                        adapter.notifyDataSetChanged();
                         refreshListView.hideFooterView();
                     }
 

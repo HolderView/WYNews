@@ -1,11 +1,11 @@
 package com.example.dllo.wynews.ui.fragment.news;
 
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +17,8 @@ import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.model.refresh.OnRefreshListener;
 import com.example.dllo.wynews.model.refresh.RefreshListView;
+import com.example.dllo.wynews.ui.activity.SelectActivity;
+import com.example.dllo.wynews.ui.activity.SelectMorePicActivity;
 import com.example.dllo.wynews.ui.adapter.select.SelectAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.google.gson.Gson;
@@ -35,6 +37,9 @@ public class SelectFragment extends AbsBaseFragment {
     private SelectAdapter adapter;
     private List<SelectBean.T1467284926140Bean> other = new ArrayList<>();
     private List<SelectBean.T1467284926140Bean> datas = new ArrayList<>();
+    private List<SelectBean.T1467284926140Bean> newDatas=new ArrayList<>();
+    private View headView;
+    private ImageView imageView;
 
     public static SelectFragment newInstance() {
         Bundle args = new Bundle();
@@ -59,6 +64,33 @@ public class SelectFragment extends AbsBaseFragment {
         refreshListView.setAdapter(adapter);
         refreshListView.setVerticalScrollBarEnabled(false);
         initNetWork();
+        initRefresh();
+        refreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (datas.get(position-2).getUrl_3w()!=null){
+                    Intent intent=new Intent(context,SelectActivity.class);
+                    intent.putExtra("select_url",datas.get(position-2).getUrl());
+                    intent.putExtra("select_replyCount",datas.get(position-2).getReplyCount());
+                    startActivity(intent);
+                }else if (
+//                        datas.get(position-2).getImgextra().size()==2||datas.get(position-2).getPhotosetID()!=null
+                        !datas.get(position-2).getPhotosetID().isEmpty()||null!=datas.get(position-2).getPhotosetID()
+                        ){
+                    Intent intent=new Intent(context, SelectMorePicActivity.class);
+                    intent.putExtra("select_photo_set_id",datas.get(position-2).getPhotosetID());
+                    intent.putExtra("select_more_pic_replyCount",datas.get(position-2).getReplyCount()+"");
+                    intent.putExtra("select_more_pic_title",datas.get(position-2).getTitle());
+                    startActivity(intent);
+
+                }
+            }
+        });
+
+
+    }
+
+    private void initRefresh() {
         //刷新加载
         refreshListView.setOnRefreshListener(new OnRefreshListener() {
             //下拉刷新
@@ -107,8 +139,6 @@ public class SelectFragment extends AbsBaseFragment {
                 Log.d("rrr", "nextNum:" + nextNum);
             }
         });
-
-
     }
 
     private void initNetWork() {
@@ -121,6 +151,7 @@ public class SelectFragment extends AbsBaseFragment {
                 datas = bean.getT1467284926140();
                 // 加入头布局
                 addheadview(datas);
+                newDatas.addAll(datas);
                 //移除list内第0条数据
                 //防止数据重复
                 datas.remove(0);
@@ -134,11 +165,25 @@ public class SelectFragment extends AbsBaseFragment {
         });
     }
 
-    private void addheadview(List<SelectBean.T1467284926140Bean> datas) {
-        View headView = LayoutInflater.from(context).inflate(R.layout.item_select_head_view, null);
-        ImageView imageView = (ImageView) headView.findViewById(R.id.iv_item_select_head);
+    private void addheadview(final List<SelectBean.T1467284926140Bean> datasNew) {
+        headView = LayoutInflater.from(context).inflate(R.layout.item_select_head_view, null);
+        imageView = (ImageView) headView.findViewById(R.id.iv_item_select_head);
         TextView textView = (TextView) headView.findViewById(R.id.tv_item_select_head);
-        Picasso.with(context).load(datas.get(0).getImgsrc()).into(imageView);
+        Picasso.with(context).load(datasNew.get(0).getImgsrc()).into(imageView);
+        Log.d("SelectFragment", datas.get(0).getImgsrc()+"hahaha");
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,SelectMorePicActivity.class);
+                Log.d("SelectFragment", newDatas.get(0).getReplyCount()+"111");
+                Log.d("SelectFragment", newDatas.get(0).getSkipID()+"333");
+                Log.d("SelectFragment", newDatas.get(0).getImgsrc()+"222");
+                intent.putExtra("select_photo_set_id",newDatas.get(0).getSkipID());
+                intent.putExtra("select_more_pic_replyCount",newDatas.get(0).getReplyCount()+"");
+                intent.putExtra("select_more_pic_title",newDatas.get(0).getTitle());
+                startActivity(intent);
+            }
+        });
         textView.setText(datas.get(0).getTitle());
         refreshListView.addHeaderView(headView);
     }

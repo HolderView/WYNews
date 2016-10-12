@@ -1,5 +1,6 @@
 package com.example.dllo.wynews.ui.fragment.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.example.dllo.wynews.model.net.UrlValues;
 import com.example.dllo.wynews.model.net.VolleyInstance;
 import com.example.dllo.wynews.model.net.VolleyResult;
 import com.example.dllo.wynews.model.refresh.RefreshListView;
+import com.example.dllo.wynews.ui.activity.EntertainmentMorePicActivity;
 import com.example.dllo.wynews.ui.adapter.headline.HeadlineAdapter;
 import com.example.dllo.wynews.ui.fragment.AbsBaseFragment;
 import com.example.dllo.wynews.view.loopview.LoopView;
@@ -29,7 +31,7 @@ public class HeadlineFragment extends AbsBaseFragment {
     private ListView listView;
     private List<LoopViewEntity> loopViewEntities=new ArrayList<>();
     private HeadlineAdapter adapter;
-
+    private List<HeadlineBean.T1348647909107Bean> newDatas=new ArrayList<>();
     public static HeadlineFragment newInstance() {
         Bundle args = new Bundle();
         HeadlineFragment fragment = new HeadlineFragment();
@@ -64,6 +66,7 @@ public class HeadlineFragment extends AbsBaseFragment {
                 Log.d("HeadlineFragment", "datas.size():" + datas.size());
                 //加入头布局轮播图
                 initHeadView(datas);
+                newDatas.addAll(datas);
                 datas.remove(0);
                 adapter.setDatas(datas);
                 listView.setAdapter(adapter);
@@ -78,7 +81,7 @@ public class HeadlineFragment extends AbsBaseFragment {
         });
     }
 
-    private void initHeadView(List<HeadlineBean.T1348647909107Bean> datas) {
+    private void initHeadView(final List<HeadlineBean.T1348647909107Bean> datas) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_headline_head_view, null);
         LoopView loopView = (LoopView) view.findViewById(R.id.loopview_head_line);
         for (int i = 0; i < datas.get(0).getAds().size(); i++) {
@@ -96,7 +99,12 @@ public class HeadlineFragment extends AbsBaseFragment {
         loopView.setOnItemClickListener(new LoopView.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                if ("photoset".equals(newDatas.get(0).getAds().get(position).getTag())){
+                    Intent intent=new Intent(context,EntertainmentMorePicActivity.class);
+                    intent.putExtra("entertainment_more_pic_id",newDatas.get(0).getAds().get(position).getUrl());
+                    intent.putExtra("entertainment_more_pic_title",newDatas.get(0).getAds().get(position).getTitle());
+                    startActivity(intent);
+                }
             }
         });
     }

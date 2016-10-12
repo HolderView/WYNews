@@ -1,6 +1,7 @@
 package com.example.dllo.wynews.ui.adapter.headline;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.wynews.R;
 import com.example.dllo.wynews.model.bean.HeadlineBean;
 import com.example.dllo.wynews.tools.ScreenSizeUtil;
@@ -114,7 +116,12 @@ public class HeadlineAdapter extends BaseAdapter {
         }
         switch (type) {
             case TYPE_LEFT:
-                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 7).into(firstViewHolder.iv_item_headline_first);
+//                Glide.with(context).load(datas.get(position).getImgsrc())
+//                        .override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 7).into(firstViewHolder.iv_item_headline_first);
+                Picasso.with(context).load(datas.get(position).getImgsrc())
+                        .resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 7)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(firstViewHolder.iv_item_headline_first);
                 firstViewHolder.tv_item_headline_first_title.setText(datas.get(position).getTitle());
                 if ("S".equals(datas.get(position).getInterest())) {
                     firstViewHolder.iv_item_headline_first_zhiding.setVisibility(View.VISIBLE);
@@ -126,15 +133,27 @@ public class HeadlineAdapter extends BaseAdapter {
                 }
                 break;
             case TYPE_ONE_IMG:
-                Picasso.with(context).load(datas.get(position).getImgsrc()).into(secondViewHolder.iv_item_headline_second);
+//                Glide.with(context).load(datas.get(position).getImgsrc()).into(secondViewHolder.iv_item_headline_second);
+                Picasso.with(context).load(datas.get(position).getImgsrc())
+                        .config(Bitmap.Config.RGB_565)
+                        .into(secondViewHolder.iv_item_headline_second);
                 secondViewHolder.tv_item_headline_second_title.setText(datas.get(position).getTitle());
                 secondViewHolder.tv_item_headline_second_from.setText(datas.get(position).getSource());
                 secondViewHolder.tv_item_headline_second_number.setText(datas.get(position).getReplyCount() + "跟帖");
                 break;
             case TYPE_THREE_IMG:
-                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_one);
-                Picasso.with(context).load(datas.get(position).getImgnewextra().get(0).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_two);
-                Picasso.with(context).load(datas.get(position).getImgnewextra().get(1).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_three);
+//                Glide.with(context).load(datas.get(position).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_one);
+//                Glide.with(context).load(datas.get(position).getImgnewextra().get(0).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_two);
+//                Glide.with(context).load(datas.get(position).getImgnewextra().get(1).getImgsrc()).override(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8).into(threadViewHolder.iv_item_headline_thread_three);
+                Picasso.with(context).load(datas.get(position).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(threadViewHolder.iv_item_headline_thread_one);
+                Picasso.with(context).load(datas.get(position).getImgnewextra().get(0).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(threadViewHolder.iv_item_headline_thread_two);
+                Picasso.with(context).load(datas.get(position).getImgnewextra().get(1).getImgsrc()).resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH) / 3, ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT) / 8)
+                        .config(Bitmap.Config.RGB_565)
+                        .into(threadViewHolder.iv_item_headline_thread_three);
                 threadViewHolder.tv_item_headline_thread_title.setText(datas.get(position).getTitle());
                 threadViewHolder.tv_item_headline_thread_from.setText(datas.get(position).getSource());
                 threadViewHolder.tv_item_headline_thread_number.setText(datas.get(position).getReplyCount() + "跟帖");

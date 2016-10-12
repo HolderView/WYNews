@@ -76,6 +76,25 @@ public class SelectBean {
         private String ptime;
         private int imgType;
         private String ltitle;
+        private String url_3w;
+        private String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getUrl_3w() {
+            return url_3w;
+        }
+
+        public void setUrl_3w(String url_3w) {
+            this.url_3w = url_3w;
+        }
+
         /**
          * imgsrc : http://cms-bucket.nosdn.127.net/18a1764c0fa147c4aa4ae0107b1293e720160921101013.jpeg
          */

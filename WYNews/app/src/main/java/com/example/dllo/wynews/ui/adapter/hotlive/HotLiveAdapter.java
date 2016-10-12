@@ -1,6 +1,7 @@
 package com.example.dllo.wynews.ui.adapter.hotlive;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class HotLiveAdapter extends BaseAdapter {
         }
         Picasso.with(context).load(datas.get(position).getImage()).
                 resize(ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.WIDTH),ScreenSizeUtil.getScreenSize(context, ScreenSizeUtil.ScreenState.HEIGHT)/4)
+                .config(Bitmap.Config.RGB_565)
                 .into(viewHolder.iv_item_hot_live_live);
 
         viewHolder.tv_item_hot_live_room_name.setText(datas.get(position).getRoomName());
